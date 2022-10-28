@@ -12,10 +12,46 @@ const initdb = async () =>
     },
   });
 
-// TODO: Add logic to a method that accepts some content and adds it to the database
-export const putDb = async (content) => console.error('putDb not implemented');
+// PUT FUNCTION
+export const putDb = async (id, value) => {
+  console.log('Updating the jateDB');
 
-// TODO: Add logic for a method that gets all the content from the database
-export const getDb = async () => console.error('getDb not implemented');
+  // connect to DB and version
+  const jateDb = await openDB('jate', 1);
+
+  // make new transaction and specifying the DB (jate) and the data privileges (readwrite). 
+  const text = jateDb.transaction('jate', 'readwrite');
+
+  // open the object store
+  const objStore = text.objectStore('jate');
+
+  // use the .add() method to pass in content
+  const req = objStore.add({ id: id, value: value })
+
+  // confirm the data was added
+  const res = await req;
+  console.log('data saved to the jateDB', res);
+}
+
+// GET FUNCTION
+export const getDb = async () => {
+  console.log('Getting data from the jateDB');
+
+  // connect to DB and version
+  const jateDb = await openDB('jate', 1);
+
+  // make new transaction and specifying the DB (jate) and the data privileges (readwrite). 
+  const text = jateDb.transaction('jate', 'readwrite');
+
+  // open the object store
+  const objStore = text.objectStore('jate');
+
+  // use the .getAll() method to grab all the content in the DB
+  const req = objStore.getAll()
+  
+  // confirm the data was fetched
+  const res = await req;
+  console.log('data saved to the jateDB', res);
+};
 
 initdb();

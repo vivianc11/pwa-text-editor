@@ -35,7 +35,8 @@ npm run start:dev
 ![text editor](./imgs/text-editor.png)
 
 ## Resources
-
+Instructor: Drew Hoang
+TA: Michael Scharf
 
 ## License
 
@@ -44,3 +45,4 @@ npm run start:dev
 This project is licensed under the terms of the MIT license.
 
 ## Deployed Website
+https://jake-the-cat.herokuapp.com/
